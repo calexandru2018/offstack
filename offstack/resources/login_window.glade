@@ -128,7 +128,9 @@ ratings and personal keywords of your favorite marked questions. </property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
-                <property name="label" translatable="yes">Need help ?</property>
+                <property name="label" translatable="yes">&lt;a href="#"&gt;Need help ?&lt;/a&gt;</property>
+                <property name="use_markup">True</property>
+                <signal name="activate-link" handler="need_help_login_label_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -172,22 +174,24 @@ ratings and personal keywords of your favorite marked questions. </property>
       </object>
     </child>
   </object>
-  <object class="GtkPopoverMenu">
+  <object class="GtkPopoverMenu" id="need_help_popover_menu">
     <property name="can_focus">False</property>
     <property name="relative_to">need_help_login_label</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_left">10</property>
+        <property name="margin_left">20</property>
+        <property name="margin_right">20</property>
         <property name="margin_top">10</property>
         <property name="margin_bottom">10</property>
         <property name="orientation">vertical</property>
+        <property name="spacing">10</property>
         <child>
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">&lt;a href="https://account.protonvpn.com/reset-password"&gt;Reset Password&lt;/a&gt;</property>
+            <property name="label" translatable="yes">&lt;a href="https://stackoverflow.com/users/account-recovery"&gt;Reset Password&lt;/a&gt;</property>
             <property name="use_markup">True</property>
           </object>
           <packing>
@@ -197,7 +201,17 @@ ratings and personal keywords of your favorite marked questions. </property>
           </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="label" translatable="yes">&lt;a href="https://github.com/calexandru2018/offstack-app/issues/new/choose"&gt;Report Issue&lt;/a&gt;</property>
+            <property name="use_markup">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
         </child>
         <child>
           <placeholder/>
