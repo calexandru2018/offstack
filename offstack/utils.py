@@ -164,8 +164,7 @@ def get_questions():
                 response_list.append(response_dict)
         logger.debug("Questions were collected.")
         return response_list                    
-    else:
-        return False
+    return False
 
 def display_favorite(favorite_id):
     if check_favorites():
@@ -228,12 +227,12 @@ def change_owner(path):
     user = get_user()
 
     uid = int(subprocess.run(["id", "-u", user],
-                             stdout=subprocess.PIPE).stdout)
+                             stdout=subprocess.PIPE).stdout) # nosec
     gid = int(subprocess.run(["id", "-u", user],
-                             stdout=subprocess.PIPE).stdout)
+                             stdout=subprocess.PIPE).stdout) # nosec
 
     current_owner = subprocess.run(["id", "-nu", str(os.stat(path).st_uid)],
-                                   stdout=subprocess.PIPE).stdout
+                                   stdout=subprocess.PIPE).stdout # nosec
     current_owner = current_owner.decode().rstrip("\n")
 
     # Only change file owner if it wasn't owned by current running user.
