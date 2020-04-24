@@ -1,14 +1,14 @@
 import sys
 
 from PyQt5 import QtWidgets
-from my_repo.login_window import LoginWindow
-from my_repo.dashboard_window import DashboardWindow
+from offstack.login_window import LoginWindow
+from offstack.dashboard_window import DashboardWindow
 
-from my_repo.utils import check_user_credentials
+from offstack.utils import check_user_credentials
 
-from my_repo.logger import logger
+from offstack.logger import logger
 
-from my_repo.constants import (
+from offstack.constants import (
     CLIENT_ID,
     CLIENT_SECRET,
     REDIRECT_URI,
@@ -58,13 +58,13 @@ def init():
     #         continue
 
     #     if int(inp) == 1:
-    #         my_repo.prompt_user_credentials()
+    #         offstack.prompt_user_credentials()
     #         continue
     #     elif int(inp) == 2:
-    #         my_repo.request_favorites()
+    #         offstack.request_favorites()
     #         continue
     #     elif int(inp) == 3:
-    #         my_repo.display_favorites()
+    #         offstack.display_favorites()
     #         continue
     #     elif int(inp) == 0:
     #         print()

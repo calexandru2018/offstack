@@ -1,5 +1,5 @@
-<h1 align="center">offstack</h1>
-<h3 align="center"><b>offstack</b> will locally store <b>Stackoverflow</b> answers, comments, ratings and personal keywords of your favorite marked questions. <b>Only for Linux.</b></h3>
+<h1 align="center">Offstack App</h1>
+<h3 align="center"><b>Offstack</b> will locally store <b>Stackoverflow</b> answers, comments, ratings and personal keywords of your favorite marked questions. <b>Only for Linux.</b></h3>
 
 <div align="center">
     <a href="https://github.com/calexandru2018/offstack/releases/latest">
@@ -22,8 +22,7 @@
 </div>    
 
 
-The idea with <b>offstack</b> is so that you can save all of your favorite stackoverflow questions locally on your computer. The idea came when I was travelling by plane. 
-<br><br>Sometimes when we (developers) travel, we might not have access to internet. At that moment we end up wishing that we somehow could have saved some of those stackoverflow favorites in our browser, just so that we could use them later. We all know that many of the Stackoverflow questions/answers are great for our development as software developers, so that is why I wanted to do something like this. So that I could work whenever and wherever I am.
+The idea with <b>offstack</b> is to make sure that you have access to your favorite stackoverflow questions&answers locally on your computer.
 
 ### Installing Dependencies
 

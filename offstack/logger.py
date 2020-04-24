@@ -2,7 +2,7 @@ import logging
 import os
 
 from logging.handlers import RotatingFileHandler
-from my_repo.constants import CONFIG_DIR
+from offstack.constants import CONFIG_DIR
 
 def logger():
     """Create the logger.

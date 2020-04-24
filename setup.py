@@ -3,29 +3,29 @@
 
 
 from setuptools import setup
-from my_repo.constants import VERSION
+from offstack.constants import VERSION
 
 long_descr = """
 Locally store your Stackoverflow favorites, without the need to constantly look them up. Works only on Linux machines.
 
 For further information and a usage guide, please view the project page:
 
-https://github.com/calexandru2018/my-repo
+https://github.com/calexandru2018/offstack-app
 """
 
 setup(
-    name="my-repo-calexandru2018",
-    packages=["my_repo"],
+    name="offstack-app",
+    packages=["offstack"],
     entry_points={
-        "console_scripts": ["my-repo = my_repo.main:init"]     
+        "console_scripts": ["offstack = offstack.main:init"]     
     },
     include_package_data=True,
     version=VERSION,
-    description="Create own (local) repository of StackOverflow favorites (only for Linux).",
+    description="Offline store favorite marked questions and answers from Stackoverflow.",
     long_description=long_descr,
     author="calexandru2018",
     license="GPLv3",
-    url="https://github.com/calexandru2018/my-repo",
+    url="https://github.com/calexandru2018/offstack-app",
     install_requires=[
         "requests",
         "requests-oauthlib",
@@ -36,13 +36,12 @@ setup(
     ],
     python_requires=">=3.5",
     classifiers=[
-        "Development Status :: 4 - Beta",
-        "Environment :: X11 Applications :: GTK",
-        "Intended Audience :: End Users/Desktop",
-        "Operating System :: POSIX :: Linux",
+        "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "Environment :: X11 Applications",
+        "Operating System :: POSIX :: Linux",
+        "Intended Audience :: End Users/Desktop",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",

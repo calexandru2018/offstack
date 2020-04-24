@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from my_repo.managers import oAuthManager, DriverManager
+from offstack.managers import oAuthManager, DriverManager
 from requests_oauthlib import OAuth2Session
 
 from selenium.webdriver import Firefox
@@ -11,10 +11,10 @@ opts.add_argument('--no-sandbox')
 
 assert opts.headless  # Operating in headless mode
 
-from my_repo.dialog import App
-from my_repo.logger import logger
+from offstack.dialog import App
+from offstack.logger import logger
 
-from my_repo.utils import (
+from offstack.utils import (
     check_access_token,
     request_access_token,
     get_user_credentials,
@@ -23,7 +23,7 @@ from my_repo.utils import (
     display_favorite
 )
 
-from my_repo.constants import(
+from offstack.constants import(
     CLIENT_ID,
     CLIENT_SECRET,
     REDIRECT_URI,

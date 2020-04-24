@@ -6,7 +6,7 @@ from getpass import getpass, getuser
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 
-from my_repo.logger import logger
+from offstack.logger import logger
 
 from .constants import (
     BASE_API

@@ -5,7 +5,7 @@ import json
 
 from getpass import getuser
 
-from my_repo.logger import logger
+from offstack.logger import logger
 
 from .constants import (
     CLIENT_ID,
