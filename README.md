@@ -1,5 +1,5 @@
 <h1 align="center">Offstack App</h1>
-<h3 align="center"><b>Offstack</b> will locally store <b>Stackoverflow</b> answers, comments, ratings and personal keywords of your favorite marked questions. <b>Only for Linux.</b></h3>
+<h3 align="center">Locally store <b>Stackoverflow</b> answers, comments, ratings and personal keywords of your favorite marked questions. <b>Only for Linux.</b></h3>
 
 <div align="center">
     <a href="https://github.com/calexandru2018/offstack/releases/latest">
@@ -21,8 +21,8 @@
     </a>    
 </div>    
 
-
-The idea with <b>offstack</b> is to make sure that you have access to your favorite stackoverflow questions&answers locally on your computer.
+<br>
+The idea with <b>Offstack</b> is to make sure that developpers have access to their favorite stackoverflow questions&answers locally their computer, without the need for opening the browser and searching for common known or previously searched issues.
 
 ### Installing Dependencies
 
