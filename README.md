@@ -2,27 +2,42 @@
 <h3 align="center">Locally store <b>Stackoverflow</b> answers, comments, ratings and personal keywords of your favorite marked questions. <b>Only for Linux.</b></h3>
 
 <div align="center">
-    <a href="https://github.com/calexandru2018/offstack/releases/latest">
-        <img alt="Build Status" src="https://img.shields.io/github/release/calexandru2018/offstack.svg?style=flat" />
-    </a>
-    <a href="https://github.com/calexandru2018/offstack/blob/master/LICENSE">
-        <img src="https://img.shields.io/github/license/calexandru2018/offstack">
-    </a>
-    <a href="https://liberapay.com/calexandru2018/donate">
-        <img src="http://img.shields.io/liberapay/goal/calexandru2018.svg?logo=liberapay">
+  <a href="https://github.com/calexandru2018/offstack-app/releases/latest">
+      <img alt="Build Status" src="https://img.shields.io/github/release/calexandru2018/offstack-app.svg?style=flat" />
+  </a>
+  <a href="https://pepy.tech/project/offstack-app">
+    <img alt="Downloads" src="https://pepy.tech/badge/offstack-app">
+  </a>   
+    <a href="https://pepy.tech/project/offstack-app/week">
+      <img alt="Downloads per Week" src="https://pepy.tech/badge/offstack-app/week">
     </a>
 </div>
 <div align="center">
-    <a href="https://actions-badge.atrox.dev/calexandru2018/offstack/goto?ref=master">
-        <img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fcalexandru2018%2Foffstack%2Fbadge%3Fref%3Dmaster&style=flat" />
+  <a href="https://liberapay.com/calexandru2018/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+</div>
+<div align="center">
+  <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/offstack-app?color=Yellow&label=python&logo=Python&logoColor=Yellow">
+</div>
+<div align="center">
+  <a href="https://www.codefactor.io/repository/github/calexandru2018/offstack-app">
+    <img src="https://www.codefactor.io/repository/github/calexandru2018/offstack-app/badge" alt="CodeFactor" />
+  </a>
+  <a href="https://github.com/calexandru2018/offstack-app/blob/master/LICENSE">
+    <img src="https://img.shields.io/pypi/l/offstack-app?style=flat" alt="License"></img>
+  </a>
+</div>
+<div align="center">
+    <a href="https://actions-badge.atrox.dev/calexandru2018/offstack-app/goto?ref=master">
+        <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/calexandru2018/offstack-app/master flake8/master?label=master%20flake8">
     </a>
-    <a href="https://actions-badge.atrox.dev/calexandru2018/offstack/goto?ref=testing">
-        <img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fcalexandru2018%2Foffstack%2Fbadge%3Fref%3Dtesting&style=flat" />
-    </a>    
-</div>    
+    <a href="https://actions-badge.atrox.dev/calexandru2018/offstack-app/goto?ref=testing">
+      <img alt="GitHub Workflow Status (Testing)" src="https://img.shields.io/github/workflow/status/calexandru2018/offstack-app/testing flake8/testing?label=testing%20flake8">
+    </a> 
+</div>
 
-<br>
+<p>
 The idea with <b>Offstack</b> is to make sure that developpers have access to their favorite stackoverflow questions&answers locally their computer, without the need for opening the browser and searching for common known or previously searched issues.
+</p>
 
 ### Installing Dependencies
 
