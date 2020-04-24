@@ -18,6 +18,7 @@ from .constants import CONFIG_DIR, USERDATA, CURRDIR
 from .utils import check_user_credentials
 
 from .login_window import LoginHandlers
+from .dialog_window import DialogHandlers
 
 def init():
     queue = Queue()
@@ -33,12 +34,13 @@ def init():
         Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
     )
 
-    # interface.add_from_file(CURRDIR+"/resources/dialog.glade")
+    interface.add_from_file(CURRDIR+"/resources/dialog.glade")
+    interface.connect_signals(DialogHandlers(interface, queue))
     
     if not check_user_credentials(): 
         interface.add_from_file(CURRDIR+"/resources/login_window.glade")
         login_window = interface.get_object("LoginWindow")
-        interface.connect_signals(LoginHandlers(interface, GObject, OAuth2Session, Firefox, opts, queue))
+        interface.connect_signals(LoginHandlers(interface, OAuth2Session, Firefox, opts, queue))
 
         login_window.show()
     else:

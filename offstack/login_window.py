@@ -16,29 +16,30 @@ from .constants import (
     USERDATA
 )
 
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import  GObject as gbj
-
 class LoginHandlers:
-    def __init__(self, interface, GObject, OAuth2Session, Firefox, browser_opts, queue):
+    def __init__(self, interface, OAuth2Session, Firefox, browser_opts, queue):
         self.interface = interface
-        self.gobject = GObject
         self.OAuth2Session = OAuth2Session
         self.Firefox = Firefox
         self.browser_opts = browser_opts
         self.resp = False
         self.queue = queue
-        thread = Thread(target=listener, args=[self.queue])
-        thread.daemon = True
-        thread.start()
 
     def login_button_clicked(self, button):
         email = self.interface.get_object('login_username_entry').get_text().strip()
         password = self.interface.get_object('password_username_entry').get_text().strip()
 
-        if not len(email) == 0 and not len(password) == 0:
-            thread = Thread(target=save_access_token, args=[self.Firefox, self.browser_opts, self.OAuth2Session, email, password, self.queue])
+        message_dialog = self.interface.get_object("MessageDialog")
+        dialog_title = self.interface.get_object("dialog_title")
+        primary_text_title = self.interface.get_object("primary_text_title")
+
+        dialog_title.set_text("Intializing profile")  
+        primary_text_title.set_text("Saving credentials and getting access token...")  
+
+        message_dialog.show()
+
+        if not len(email) == 0 and not len(password) == 0:          
+            thread = Thread(target=save_access_token, args=[self.interface, self.Firefox, self.browser_opts, self.OAuth2Session, email, password, self.queue])
             thread.daemon = True
             thread.start()
         else:
@@ -48,13 +49,7 @@ class LoginHandlers:
         popover = self.interface.get_object("need_help_popover_menu")
         popover.show()
 
-def listener(queue):
-    while True:
-        item = queue.get()
-        if not item["create_user"]:
-            print("Unable to create user.")
-
-def save_access_token(Firefox, browser_opts, OAuth2Session, email, password, queue):     
+def save_access_token(interface, Firefox, browser_opts, OAuth2Session, email, password, queue): 
     with concurrent.futures.ThreadPoolExecutor() as executor:
         params_dict = {
             "email": email,
@@ -72,7 +67,7 @@ def save_access_token(Firefox, browser_opts, OAuth2Session, email, password, que
         oauth_manager.create_session()
         driver = DriverManager(CLIENT_ID, CLIENT_SECRET, browser)
         user_data = email, password
-        queue.put({"create_user": request_access_token(driver, oauth_manager, user_data)})
+        queue.put({"create_user": {"response":request_access_token(driver, oauth_manager, user_data)}})
 
 def create_user_file(email, password):
     try:
