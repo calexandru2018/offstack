@@ -17,7 +17,7 @@ setup(
     name="offstack-app",
     packages=["offstack"],
     entry_points={
-        "console_scripts": ["offstack = offstack.main:init"]     
+        "console_scripts": ["offstack = offstack.__main__:init"]     
     },
     include_package_data=True,
     version=VERSION,
@@ -32,7 +32,6 @@ setup(
         "oauthlib",
         "setuptools",
         "selenium",
-        "pyqt5",
     ],
     python_requires=">=3.5",
     classifiers=[
