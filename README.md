@@ -34,9 +34,9 @@
       <img alt="GitHub Workflow Status (Testing)" src="https://img.shields.io/github/workflow/status/calexandru2018/offstack-app/testing flake8/testing?label=testing%20flake8">
     </a> 
 </div>
-
+<br/>
 <p>
-The idea with <b>Offstack</b> is to make sure that developpers have access to their favorite stackoverflow questions&answers locally their computer, without the need for opening the browser and searching for common known or previously searched issues.
+The main goal with <b>Offstack</b> is to make sure that developpers have access to their favorite stackoverflow questions&answers locally on their computers, without the need of using a browser and searching for previously saved issues.
 </p>
 
 ### Installing Dependencies
