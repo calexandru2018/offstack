@@ -108,6 +108,7 @@ ratings and personal keywords of your favorite marked questions. </property>
                 <property name="receives_default">True</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
+                <property name="relief">none</property>
                 <signal name="clicked" handler="login_button_clicked" swapped="no"/>
                 <child>
                   <object class="GtkLabel">
