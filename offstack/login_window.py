@@ -13,41 +13,50 @@ from .constants import (
     SCOPE,
     VERSION,
     USERDATA,
-    CURRDIR
+    CURRDIR,
+
 )
 
-def display_login(interface, OAuth2Session, Firefox, opts, queue):
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import  GObject as obj
+
+def display_login(interface, OAuth2Session, Firefox, opts, queue, Gtk):
     interface.add_from_file(CURRDIR+"/resources/login_window.glade")
     login_window = interface.get_object("LoginWindow")
-    interface.connect_signals(LoginHandlers(interface, OAuth2Session, Firefox, opts, queue))
+    login_version_label = interface.get_object("login_version_label")
+    interface.connect_signals(LoginHandlers(interface, OAuth2Session, Firefox, opts, queue, Gtk))
+    login_window.connect("destroy", Gtk.main_quit)
 
+    login_version_label.set_text("v.{}".format(VERSION))
     login_window.show()
 
 class LoginHandlers:
-    def __init__(self, interface, OAuth2Session, Firefox, browser_opts, queue):
+    def __init__(self, interface, OAuth2Session, Firefox, browser_opts, queue, Gtk):
         self.interface = interface
         self.OAuth2Session = OAuth2Session
         self.Firefox = Firefox
         self.browser_opts = browser_opts
         self.queue = queue
+        self.gtk = Gtk
 
     def login_button_clicked(self, button):
         email = self.interface.get_object('login_username_entry').get_text().strip()
         password = self.interface.get_object('password_username_entry').get_text().strip()
 
         message_dialog = self.interface.get_object("MessageDialog")
-        dialog_title = self.interface.get_object("dialog_title")
+        dialog_header = self.interface.get_object("dialog_header")
         primary_text_title = self.interface.get_object("primary_text_title")
         message_dialog_spinner = self.interface.get_object("message_dialog_spinner")
 
-        dialog_title.set_text("Intializing profile")  
+        dialog_header.set_text("Intializing profile")  
         primary_text_title.set_text("Saving credentials and getting access token...")  
         message_dialog_spinner.show()
 
         message_dialog.show()
 
         if not len(email) == 0 and not len(password) == 0:          
-            thread = Thread(target=save_access_token, args=[self.interface, self.Firefox, self.browser_opts, self.OAuth2Session, email, password, self.queue])
+            thread = Thread(target=save_access_token, args=[self.interface, self.Firefox, self.browser_opts, self.OAuth2Session, email, password, self.queue, self.gtk])
             thread.daemon = True
             thread.start()
         else:
@@ -57,7 +66,7 @@ class LoginHandlers:
         popover = self.interface.get_object("need_help_popover_menu")
         popover.show()
 
-def save_access_token(interface, Firefox, browser_opts, OAuth2Session, email, password, queue): 
+def save_access_token(interface, Firefox, browser_opts, OAuth2Session, email, password, queue, gtk): 
     with concurrent.futures.ThreadPoolExecutor() as executor:
         params_dict = {
             "email": email,
@@ -77,9 +86,10 @@ def save_access_token(interface, Firefox, browser_opts, OAuth2Session, email, pa
         user_data = email, password
         response = request_access_token(driver, oauth_manager, user_data)
         queue.put({"create_user": {"response":response}})
-        # if response:
-        #     time.sleep(1.5)
-        #     display_dashboard(interface, OAuth2Session, Firefox, browser_opts, queue)
+        if response:
+            obj.idle_add(display_dashboard, interface, OAuth2Session, Firefox, browser_opts, queue, gtk)
+            login_window = interface.get_object("LoginWindow")
+            login_window.hide()
 
 def create_user_file(email, password):
     try:

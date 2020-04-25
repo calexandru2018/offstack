@@ -23,15 +23,18 @@ class DialogHandlers():
             return True
 
 def listener(interface, queue):
+    dialog_header = interface.get_object("dialog_header")
     primary_text_title = interface.get_object("primary_text_title")
     message_dialog_spinner = interface.get_object("message_dialog_spinner")
     while True:
         item = queue.get()
         if item["create_user"]:
             if not item["create_user"]["response"]:
+                dialog_header.set_text("Error")
                 primary_text_title.set_text("Unable to extract token! (It could be related to incorrect credentials)")
                 message_dialog_spinner.hide()
             else:
-                primary_text_title.set_text("All data is ready, dashboard should load in a second!")
+                dialog_header.set_text("Setup is complete!")
+                primary_text_title.hide()
                 message_dialog_spinner.hide()
                 

@@ -16,14 +16,18 @@ from .constants import(
     REDIRECT_URI,
     SCOPE,
     USERDATA,
-    CURRDIR
+    CURRDIR,
+    VERSION
 )
 
-def display_dashboard(interface, OAuth2Session, Firefox, opts, queue):
+def display_dashboard(interface, OAuth2Session, Firefox, opts, queue, Gtk):
     interface.add_from_file(CURRDIR+"/resources/dashboard_window.glade")
     dashboard_window = interface.get_object("DashboardWindow")
+    dashboard_version_label = interface.get_object("dashboard_version_label")
     interface.connect_signals(DashboardHandlers(interface, OAuth2Session, Firefox, opts, queue))
-
+    dashboard_window.connect("destroy", Gtk.main_quit)
+    
+    dashboard_version_label.set_text("v.{}".format(VERSION))
     dashboard_window.show()
 
 class DashboardHandlers():
@@ -66,7 +70,7 @@ def populate_on_load(interface, OAuth2Session, Firefox, browser_opts, queue):
     
     if not questions_list:
         questions_list = cache_favorites(interface, OAuth2Session, Firefox, browser_opts, queue)
-
+    print("Should be displayed")
     questions_list_store.clear()
     for question in questions_list:
         tags = '; '.join(question["tags"])
