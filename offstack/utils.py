@@ -226,13 +226,10 @@ def change_owner(path):
     """Change the owner of specific files to the sudo user."""
     user = get_user()
 
-    uid = int(subprocess.run(["id", "-u", user],
-                             stdout=subprocess.PIPE).stdout) # nosec
-    gid = int(subprocess.run(["id", "-u", user],
-                             stdout=subprocess.PIPE).stdout) # nosec
+    uid = int(subprocess.run(["id", "-u", user], stdout=subprocess.PIPE).stdout) # nosec
+    gid = int(subprocess.run(["id", "-u", user], stdout=subprocess.PIPE).stdout) # nosec
 
-    current_owner = subprocess.run(["id", "-nu", str(os.stat(path).st_uid)],
-                                   stdout=subprocess.PIPE).stdout # nosec
+    current_owner = subprocess.run(["id", "-nu", str(os.stat(path).st_uid)], stdout=subprocess.PIPE).stdout # nosec
     current_owner = current_owner.decode().rstrip("\n")
 
     # Only change file owner if it wasn't owned by current running user.

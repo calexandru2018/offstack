@@ -34,7 +34,7 @@ def init():
         Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
     )
 
-    interface.add_from_file(CURRDIR+"/resources/dialog.glade")
+    interface.add_from_file(CURRDIR+"/resources/dialog_window.glade")
     interface.connect_signals(DialogHandlers(interface, queue))
     
     if not check_user_credentials(): 
@@ -44,11 +44,11 @@ def init():
 
         login_window.show()
     else:
-        # interface.add_from_file(CURRDIR+"/resources/dashboard_window.glade")
-        # dashboard_window = interface.get_object("DashboardWindow")
+        interface.add_from_file(CURRDIR+"/resources/dashboard_window.glade")
+        dashboard_window = interface.get_object("DashboardWindow")
         # interface.connect_signals(DashboardHandlers(interface, Firefox, opts))
-
-        # dashboard_window.show()
+        print(dashboard_window)
+        dashboard_window.show()
         print("Call dashboard")
 
     Gtk.main()
