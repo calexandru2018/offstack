@@ -102,6 +102,7 @@
                         <property name="fixed_height_mode">True</property>
                         <property name="show_expanders">False</property>
                         <property name="activate_on_single_click">True</property>
+                        <signal name="cursor-changed" handler="QuestionsTreeView_cursor_changed" swapped="no"/>
                         <child internal-child="selection">
                           <object class="GtkTreeSelection"/>
                         </child>
@@ -190,7 +191,7 @@
                     <property name="vexpand">True</property>
                     <property name="shadow_type">in</property>
                     <child>
-                      <object class="GtkTextView">
+                      <object class="GtkTextView" id="question_textview">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="editable">False</property>
@@ -216,7 +217,7 @@
                     <property name="vexpand">True</property>
                     <property name="shadow_type">in</property>
                     <child>
-                      <object class="GtkTextView">
+                      <object class="GtkTextView" id="answers_textview">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="editable">False</property>

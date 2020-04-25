@@ -7,7 +7,7 @@ from .utils import (
     get_user_credentials,
     request_favorites,
     get_questions,
-    display_favorite
+    display_favorite_question
 )
 
 from .constants import(
@@ -37,12 +37,33 @@ class DashboardHandlers():
         self.Firefox = Firefox
         self.browser_opts = browser_opts
         self.queue = queue
+        self.question_textview = self.interface.get_object("question_textview")
+        self.answers_textview = self.interface.get_object("answers_textview")
         populate_on_load(self.interface, self.OAuth2Session, self.Firefox, self.browser_opts, self.queue)
 
     def search_entry_key_release_event(self, entry, event):
         print("Filter")
 
-    
+    def QuestionsTreeView_cursor_changed(self, listview):
+        # Get the selected server
+        (model, pathlist) = listview.get_selection().get_selected_rows()
+
+        for path in pathlist :
+            tree_iter = model.get_iter(path)
+            # the second param of get_value() specifies the column number, starting at 0
+            question_id = model.get_value(tree_iter, 0)
+            load_content(question_id, self.question_textview, self.answers_textview)
+            
+
+def load_content(question_id, question_textview, answers_textview):
+    question, resp_count, answers = display_favorite_question(question_id)
+
+    question_buffer = question_textview.get_buffer()
+    question_buffer.set_text(question)
+
+    answers_buffer = answers_textview.get_buffer()
+    answers_buffer.set_text(answers)
+
 def cache_favorites(interface, OAuth2Session, Firefox, browser_opts, queue):
     logger.debug("Creating oAuth Session")
     oauth_manager = oAuthManager(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, OAuth2Session, SCOPE)

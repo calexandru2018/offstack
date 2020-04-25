@@ -167,25 +167,22 @@ def get_questions():
         return response_list                    
     return False
 
-def display_favorite(favorite_id):
+def display_favorite_question(favorite_id):
+    """Return favorite related quesion, answers and other data."""
     if check_favorites():
+        answers = ''
         with open(FAVORITES, "r") as f:
-            # i = 1
             for el in json.load(f)['items']:
-                # if i == 0:
-                #     break;
-                # print(el)
                 if el["question_id"] == favorite_id:
-                    resp = """
+                    question = """
                     <h3>{title}</h3>
                     <br>
                     {body}
                     <br><br>
-                    <b><u>Answers:</u></b><br>
-                    """.format(title=el["title"], body=el["body"])
+                    """.format(title=el["title"], body=el["body_markdown"])
                     resp_count = 1
                     for answer in el["answers"]:
-                        resp = resp + """
+                        answers = answers + """
                         <u>Accepted: {accepted}</u>
                         <br>
                         <a href="{link}">Link</a>
@@ -201,10 +198,9 @@ def display_favorite(favorite_id):
                             response=answer["body"])
                         resp_count += 1
                     logger.debug("Return favorite related quesion, answers and other data. Favorite Id: {}".format(favorite_id))
-                    return resp
-                # i -= 1
+                    return (question, resp_count, answers)
             logger.debug("[!] Unable to find any favorite related quesion, answers and other data.")
-            return False
+            return False    
 
 def check_root():
     """Check if the program was executed as root and prompt the user."""
