@@ -1,3 +1,6 @@
+# Glade temp file
+*.glade~
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pytest = "*"
 
 [packages]
 requests = "*"
@@ -11,4 +12,5 @@ requests-oauthlib = "*"
 oauthlib = "*"
 setuptools = "*"
 selenium = "*"
-pyqt5 = "*"
+pycairo = "*"
+pygobject = "*"

@@ -46,11 +46,10 @@ The main goal with <b>Offstack</b> is to make sure that developpers have access 
 - python3.5+
 - pip for python3 (pip3)
 - setuptools for python3 (python3-setuptools)
-- requests
 - requests-oauthlib
+- requests
 - oauthlib
 - selenium
-- pyqt5
 - <a href="https://github.com/mozilla/geckodriver/releases">geckodriver</a>
 
 
@@ -58,10 +57,10 @@ Install the following packages based on your distro:
 
 | **Distro**                              | **Command**                                                                                                                           |
 |:----------------------------------------|:---------------------------------------------------------------------------------------------------------                             |
-|Fedora/CentOS/RHEL                       | `sudo dnf install -y python3-pip python3-setuptools python3-pyqt5`                                              |
-|Ubuntu/Linux Mint/Debian and derivatives | `sudo apt install -y python3-pip python3-setuptools python3-pyqt5`                        |
-|OpenSUSE/SLES                            | `sudo zypper in -y python3-pip python3-setuptools python3-pyqt5`  |
-|Arch Linux/Manjaro                       | `sudo pacman -S python-pip python-setuptools python-pyqt5`       |
+|Fedora/CentOS/RHEL                       | `sudo dnf install -y python3-gobject gtk3`                                              |
+|Ubuntu/Linux Mint/Debian and derivatives | `sudo apt install -y python3-gi python3-gi-cairo gir1.2-gtk-3.0`                        |
+|OpenSUSE/SLES                            | `sudo zypper install python3-gobject python3-gobject-Gdk typelib-1_0-Gtk-3_0 libgtk-3-0`  |
+|Arch Linux/Manjaro                       | `sudo pacman -S python-gobject gtk3`       |
 
 
 ## Installing offstack
@@ -76,7 +75,7 @@ You can either install via <b>PIP</b> or by cloning the repository.
 
 ### To update to a new version
 
-`sudo pip3 install offstack --upgrade`
+`pip3 install offstack --upgrade`
 
 ## Manual Installation
 
@@ -90,7 +89,7 @@ You can either install via <b>PIP</b> or by cloning the repository.
 
 3. Install
 
-    `sudo python3 setup.py install`
+    `python3 setup.py install`
 
 ### How to use
 
@@ -104,9 +103,9 @@ You can either install via <b>PIP</b> or by cloning the repository.
 ## GUI Layout
 
 <p align="center">
-  <img src="https://i.imgur.com/hPYZw28.png" alt="Logo"></img>
-</p>
+  <img src="https://i.imgur.com/P2D5mKE.png" alt="Advanced Settings"></img>
+</p> 
 
 <p align="center">
-  <img src="https://i.imgur.com/nzWsIwn.png" alt="Logo"></img>
-</p>
+  <img src="https://i.imgur.com/BxJ2Fys.png" alt="Diagnosis Tool"></img>
+</p> 

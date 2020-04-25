@@ -1,0 +1,96 @@
+@define-color def_bg_color rgb(37, 49, 49);
+@define-color overlay_color rgb(47, 77, 79);
+@define-color button_hover rgb(27, 37, 39);
+
+window {
+    background-color: @def_bg_color;
+    color: white;
+}
+
+scrolledwindow, dialog, treeview header button{
+    -gtk-icon-effect: none;
+    -gtk-icon-source: none;
+    background-image: none;
+    text-shadow: none;
+    box-shadow: none;
+    background-color: @def_bg_color;
+    border-radius: 0;
+    color: white;
+    outline: none;
+    border-color: @button_hover
+}
+
+treeview, textview text{
+    color: white;
+    background-color: @button_hover;
+}
+
+scrolledwindow {
+    border-radius: 5px;
+}
+
+treeview:focus, treeview:hover{
+    background-color: @overlay_color;
+}
+
+.no_border{
+    border: none;
+}
+
+label, entry{
+    text-shadow: none;
+    color: white;
+}
+
+entry{
+    border-image:none;
+    outline: none;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    border-radius: 0;
+}
+entry:focus{
+    border-image:none;
+    outline: none;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(255,255,255,0.6);
+}
+
+grid button{
+    -gtk-icon-effect: none;
+    -gtk-icon-source: none;
+    background-image: none;
+    text-shadow: none;
+    box-shadow: none;
+    border: none;
+    padding: 10px 50px;
+    border-radius: 8px;
+    background-color: @button_hover;
+}
+
+grid button:hover{
+    -gtk-icon-effect: none;
+    -gtk-icon-source: none;
+    background-image: none;
+    text-shadow: none;
+    border: none;
+    box-shadow: 0 0 10px -1px @button_hover;
+    background-color: @overlay_color;
+}
+
+combobox, combobox button {
+    -gtk-icon-effect: none;
+    -gtk-icon-source: none;
+    background-image: none;
+    text-shadow: none;
+    box-shadow: none;
+    outline: none;
+    border-image-width: 0;
+}
+
+
+.login_version_label{
+    color: yellow;
+    padding: 10px 15px;
+    color: rgb(127,127,127);
+}
