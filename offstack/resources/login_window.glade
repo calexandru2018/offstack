@@ -155,7 +155,6 @@ ratings and personal keywords of your favorite marked questions. </property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">end</property>
-            <property name="label" translatable="yes">v.0.0.1</property>
             <style>
               <class name="login_version_label"/>
             </style>
@@ -191,8 +190,10 @@ ratings and personal keywords of your favorite marked questions. </property>
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="halign">start</property>
             <property name="label" translatable="yes">&lt;a href="https://stackoverflow.com/users/account-recovery"&gt;Reset Password&lt;/a&gt;</property>
             <property name="use_markup">True</property>
+            <property name="justify">fill</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -204,8 +205,10 @@ ratings and personal keywords of your favorite marked questions. </property>
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="halign">start</property>
             <property name="label" translatable="yes">&lt;a href="https://github.com/calexandru2018/offstack-app/issues/new/choose"&gt;Report Issue&lt;/a&gt;</property>
             <property name="use_markup">True</property>
+            <property name="justify">fill</property>
           </object>
           <packing>
             <property name="expand">False</property>
