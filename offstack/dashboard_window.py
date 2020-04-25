@@ -42,7 +42,24 @@ class DashboardHandlers():
         populate_on_load(self.interface, self.OAuth2Session, self.Firefox, self.browser_opts, self.queue)
 
     def search_entry_key_release_event(self, entry, event):
-        print("Filter")
+        """Event handler, to filter servers after each key release"""
+        user_filter_by = entry.get_text()
+        server_tree_store = self.interface.get_object("QuestionsListStore")
+        tree_view_object = self.interface.get_object("QuestionsTreeView")
+
+        # Creates a new filter from a ListStore/TreeStore
+        n_filter = server_tree_store.filter_new()
+
+        # set_visible_func:
+        # first_param: filter function
+        # seconde_param: input to filter by
+        n_filter.set_visible_func(column_filter, data=[self.interface, user_filter_by])
+        
+        # Apply the filter model to a TreeView
+        tree_view_object.set_model(n_filter)
+
+        # Updates the ListStore model
+        n_filter.refilter()
 
     def QuestionsTreeView_cursor_changed(self, listview):
         # Get the selected server
@@ -54,6 +71,29 @@ class DashboardHandlers():
             question_id = model.get_value(tree_iter, 0)
             load_content(question_id, self.question_textview, self.answers_textview)
             
+def column_filter(model, iterator, data=None):
+    """Filter by columns and returns the corresponding rows"""
+    interface = data[0]
+    data = data[1].lower()
+    treeview = interface.get_object("QuestionsTreeView")
+
+    cols = treeview.get_n_columns()
+    tags = model.get_value(iterator, 4).split(";")
+    tags = [tag.strip().lower() for tag in tags]
+
+    question_title = model.get_value(iterator, 1).lower()
+    
+    try:
+        if data[0] == ":":
+            keys = data[1:].split()
+            keys = [key.lower() for key in keys]
+
+            if any(tag.startswith(tuple(keys)) for tag in tags):
+                return True
+
+    except IndexError:
+        if any(tag.startswith(data) for tag in tags) or data in question_title:
+            return True
 
 def load_content(question_id, question_textview, answers_textview):
     question, resp_count, answers = display_favorite_question(question_id)
