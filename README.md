@@ -101,3 +101,11 @@ You can either install via <b>PIP</b> or by cloning the repository.
 - Searching/Filter
 
 ## GUI Layout
+
+<p align="center">
+  <img src="https://i.imgur.com/P2D5mKE.png" alt="Advanced Settings"></img>
+</p> 
+
+<p align="center">
+  <img src="https://i.imgur.com/BxJ2Fys.png" alt="Diagnosis Tool"></img>
+</p> 
