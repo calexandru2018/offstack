@@ -15,8 +15,16 @@ from .constants import(
     CLIENT_SECRET,
     REDIRECT_URI,
     SCOPE,
-    USERDATA
+    USERDATA,
+    CURRDIR
 )
+
+def display_dashboard(interface, OAuth2Session, Firefox, opts, queue):
+    interface.add_from_file(CURRDIR+"/resources/dashboard_window.glade")
+    dashboard_window = interface.get_object("DashboardWindow")
+    interface.connect_signals(DashboardHandlers(interface, OAuth2Session, Firefox, opts, queue))
+
+    dashboard_window.show()
 
 class DashboardHandlers():
     def __init__(self, interface, OAuth2Session, Firefox, browser_opts, queue):
@@ -55,7 +63,7 @@ def cache_favorites(interface, OAuth2Session, Firefox, browser_opts, queue):
 def populate_on_load(interface, OAuth2Session, Firefox, browser_opts, queue):
     questions_list = get_questions()
     questions_list_store = interface.get_object("QuestionsListStore")
-
+    
     if not questions_list:
         questions_list = cache_favorites(interface, OAuth2Session, Firefox, browser_opts, queue)
 

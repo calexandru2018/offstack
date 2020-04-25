@@ -17,9 +17,11 @@ from .logger import logger
 from .constants import CONFIG_DIR, USERDATA, CURRDIR
 from .utils import check_user_credentials
 
-from .login_window import LoginHandlers
+# from .login_window import LoginHandlers
+from .login_window import display_login
 from .dialog_window import DialogHandlers
-from .dashboard_window import DashboardHandlers
+# from .dashboard_window import DashboardHandlers
+from .dashboard_window import display_dashboard
 
 def init():
     queue = Queue()
@@ -39,16 +41,18 @@ def init():
     interface.connect_signals(DialogHandlers(interface, queue))
     
     if not check_user_credentials(): 
-        interface.add_from_file(CURRDIR+"/resources/login_window.glade")
-        login_window = interface.get_object("LoginWindow")
-        interface.connect_signals(LoginHandlers(interface, OAuth2Session, Firefox, opts, queue))
+        # interface.add_from_file(CURRDIR+"/resources/login_window.glade")
+        # login_window = interface.get_object("LoginWindow")
+        # interface.connect_signals(LoginHandlers(interface, OAuth2Session, Firefox, opts, queue))
 
-        login_window.show()
+        # login_window.show()
+        display_login(interface, OAuth2Session, Firefox, opts, queue)
     else:
-        interface.add_from_file(CURRDIR+"/resources/dashboard_window.glade")
-        dashboard_window = interface.get_object("DashboardWindow")
-        interface.connect_signals(DashboardHandlers(interface, OAuth2Session, Firefox, opts, queue))
+        # interface.add_from_file(CURRDIR+"/resources/dashboard_window.glade")
+        # dashboard_window = interface.get_object("DashboardWindow")
+        # interface.connect_signals(DashboardHandlers(interface, OAuth2Session, Firefox, opts, queue))
         
-        dashboard_window.show()
+        # dashboard_window.show()
+        display_dashboard(interface, OAuth2Session, Firefox, opts, queue)
 
     Gtk.main()

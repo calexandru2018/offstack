@@ -2,6 +2,7 @@ import time
 import concurrent.futures
 from threading import Thread
 
+from .dashboard_window import display_dashboard
 from .managers import oAuthManager, DriverManager
 from .utils import request_access_token, check_user_credentials
 from .logger import logger
@@ -11,8 +12,16 @@ from .constants import (
     REDIRECT_URI,
     SCOPE,
     VERSION,
-    USERDATA
+    USERDATA,
+    CURRDIR
 )
+
+def display_login(interface, OAuth2Session, Firefox, opts, queue):
+    interface.add_from_file(CURRDIR+"/resources/login_window.glade")
+    login_window = interface.get_object("LoginWindow")
+    interface.connect_signals(LoginHandlers(interface, OAuth2Session, Firefox, opts, queue))
+
+    login_window.show()
 
 class LoginHandlers:
     def __init__(self, interface, OAuth2Session, Firefox, browser_opts, queue):
@@ -29,9 +38,11 @@ class LoginHandlers:
         message_dialog = self.interface.get_object("MessageDialog")
         dialog_title = self.interface.get_object("dialog_title")
         primary_text_title = self.interface.get_object("primary_text_title")
+        message_dialog_spinner = self.interface.get_object("message_dialog_spinner")
 
         dialog_title.set_text("Intializing profile")  
         primary_text_title.set_text("Saving credentials and getting access token...")  
+        message_dialog_spinner.show()
 
         message_dialog.show()
 
@@ -64,7 +75,11 @@ def save_access_token(interface, Firefox, browser_opts, OAuth2Session, email, pa
         oauth_manager.create_session()
         driver = DriverManager(CLIENT_ID, CLIENT_SECRET, browser)
         user_data = email, password
-        queue.put({"create_user": {"response":request_access_token(driver, oauth_manager, user_data)}})
+        response = request_access_token(driver, oauth_manager, user_data)
+        queue.put({"create_user": {"response":response}})
+        # if response:
+        #     time.sleep(1.5)
+        #     display_dashboard(interface, OAuth2Session, Firefox, browser_opts, queue)
 
 def create_user_file(email, password):
     try:
