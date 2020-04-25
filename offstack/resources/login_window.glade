@@ -9,7 +9,17 @@
     <property name="gravity">center</property>
     <property name="show_menubar">False</property>
     <child type="titlebar">
-      <placeholder/>
+      <object class="GtkHeaderBar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="title" translatable="yes">Offstack App - Login</property>
+        <property name="has_subtitle">False</property>
+        <property name="spacing">1</property>
+        <property name="show_close_button">True</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
     </child>
     <child>
       <object class="GtkGrid" id="login_main_grid">
@@ -115,6 +125,9 @@ ratings and personal keywords of your favorite marked questions. </property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Login</property>
+                    <style>
+                      <class name="default_button"/>
+                    </style>
                   </object>
                 </child>
               </object>
