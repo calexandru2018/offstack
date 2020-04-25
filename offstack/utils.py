@@ -153,12 +153,13 @@ def get_questions():
                     #     link=el['link'],))
                     response_dict = {
                         "question_id": el['question_id'],
+                        "tags": el['tags'],
                         "title": el['title'],
                         # "text": el['body_markdown'],
-                        # "answered": el['is_answered'],
+                        "answered": el['is_answered'],
                         # "views": el['view_count'],
                         # "answers": el['answer_count'],
-                        # "score": el['score'],
+                        "score": el['score'],
                         # "link": el['link'],
                     }
                 response_list.append(response_dict)

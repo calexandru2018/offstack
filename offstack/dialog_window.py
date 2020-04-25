@@ -34,3 +34,4 @@ def listener(interface, queue):
             else:
                 primary_text_title.set_text("All data is ready, dashboard should load in a second!")
                 message_dialog_spinner.hide()
+                

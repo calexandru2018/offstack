@@ -1,7 +1,5 @@
 import time
 import concurrent.futures
-
-
 from threading import Thread
 
 from .managers import oAuthManager, DriverManager
@@ -22,7 +20,6 @@ class LoginHandlers:
         self.OAuth2Session = OAuth2Session
         self.Firefox = Firefox
         self.browser_opts = browser_opts
-        self.resp = False
         self.queue = queue
 
     def login_button_clicked(self, button):

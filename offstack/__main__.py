@@ -19,6 +19,7 @@ from .utils import check_user_credentials
 
 from .login_window import LoginHandlers
 from .dialog_window import DialogHandlers
+from .dashboard_window import DashboardHandlers
 
 def init():
     queue = Queue()
@@ -46,9 +47,8 @@ def init():
     else:
         interface.add_from_file(CURRDIR+"/resources/dashboard_window.glade")
         dashboard_window = interface.get_object("DashboardWindow")
-        # interface.connect_signals(DashboardHandlers(interface, Firefox, opts))
-        print(dashboard_window)
+        interface.connect_signals(DashboardHandlers(interface, OAuth2Session, Firefox, opts, queue))
+        
         dashboard_window.show()
-        print("Call dashboard")
 
     Gtk.main()
