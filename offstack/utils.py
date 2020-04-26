@@ -175,29 +175,30 @@ def display_favorite_question(favorite_id):
             for el in json.load(f)['items']:
                 if el["question_id"] == favorite_id:
                     question = """
-                    <h3>{title}</h3>
-                    <br>
                     {body}
                     <br><br>
                     """.format(title=el["title"], body=el["body_markdown"])
                     resp_count = 1
-                    for answer in el["answers"]:
-                        answers = answers + """
-                        <u>Accepted: {accepted}</u>
-                        <br>
-                        <a href="{link}">Link</a>
-                        <br>
-                        Response number: {number}
-                        <br>
-                        {response}
-                        <br><br>
-                        """.format(
-                            accepted=answer["is_accepted"], 
-                            link=answer["share_link"], 
-                            number=str(resp_count), 
-                            response=answer["body"])
-                        resp_count += 1
-                    logger.debug("Return favorite related quesion, answers and other data. Favorite Id: {}".format(favorite_id))
+                    try:
+                        for answer in el["answers"]:
+                            answers = answers + """
+                            <u>Accepted: {accepted}</u>
+                            <br>
+                            <a href="{link}">Link</a>
+                            <br>
+                            Response number: {number}
+                            <br>
+                            {response}
+                            <br><br>
+                            """.format(
+                                accepted=answer["is_accepted"], 
+                                link=answer["share_link"], 
+                                number=str(resp_count), 
+                                response=answer["body_markdown"])
+                            resp_count += 1
+                        logger.debug("Return favorite related quesion, answers and other data. Favorite Id: {}".format(favorite_id))
+                    except KeyError:
+                        answers = "No answers"
                     return (question, resp_count, answers)
             logger.debug("[!] Unable to find any favorite related quesion, answers and other data.")
             return False    

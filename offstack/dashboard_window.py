@@ -83,17 +83,18 @@ def column_filter(model, iterator, data=None):
 
     question_title = model.get_value(iterator, 1).lower()
     
-    try:
-        if data[0] == ":":
-            keys = data[1:].split()
-            keys = [key.lower() for key in keys]
+ 
+    if len(data) > 0 and data[0] == ":":
+        keys = data[1:].split()
+        keys = [key.lower() for key in keys]
 
-            if any(tag.startswith(tuple(keys)) for tag in tags):
-                return True
-
-    except IndexError:
-        if any(tag.startswith(data) for tag in tags) or data in question_title:
+        if any(tag.startswith(tuple(keys)) for tag in tags):
             return True
+    elif len(data) and any(tag.startswith(data) for tag in tags) or data in question_title:
+        return True
+
+        
+    
 
 def load_content(question_id, question_textview, answers_textview):
     question, resp_count, answers = display_favorite_question(question_id)
