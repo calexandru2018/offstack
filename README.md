@@ -93,11 +93,6 @@ You can either install via <b>PIP</b> or by cloning the repository.
 
  `offstack`
 
-### Not yet implemented:
-- GUI
-- Add own (personal) keywords
-- Searching/Filter
-
 ## GUI Layout
 
 <p align="center">
