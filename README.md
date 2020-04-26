@@ -69,9 +69,7 @@ Before proceeding with with the next installation steps, make sure that you have
 
 You can either install via <b>PIP</b> or by cloning the repository.
 
-*Note: Make sure to run pip with sudo*
-
-`sudo pip3 install offstack`
+`pip3 install offstack`
 
 ### To update to a new version
 
@@ -94,11 +92,6 @@ You can either install via <b>PIP</b> or by cloning the repository.
 ### How to use
 
  `offstack`
-
-### Not yet implemented:
-- GUI
-- Add own (personal) keywords
-- Searching/Filter
 
 ## GUI Layout
 
