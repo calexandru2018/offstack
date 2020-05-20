@@ -13,13 +13,16 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import  Gtk, Gdk, GObject
 
-from .logger import logger
-from .constants import CONFIG_DIR, USERDATA, CURRDIR
-from .utils import check_user_credentials
+from offstack.logger import logger
+from offstack.constants import CONFIG_DIR, USERDATA, CURRDIR
+from offstack.utils import check_user_credentials
 
-from .login_window import display_login
-from .dialog_window import DialogHandlers
-from .dashboard_window import display_dashboard
+from offstack.views.login_view import LoginView
+from offstack.views.dialog_view import DialogView
+
+from offstack.presenters.login_presenter import LoginPresenter
+
+from offstack.services.login_service import LoginService
 
 def init():
     queue = Queue()
@@ -27,24 +30,23 @@ def init():
 
     # Apply CSS
     style_provider = Gtk.CssProvider()
-    style_provider.load_from_path(CURRDIR+"/resources/main.css")
+    style_provider.load_from_path(os.path.join(CURRDIR, "resources/main.css"))
 
     Gtk.StyleContext.add_provider_for_screen(
         Gdk.Screen.get_default(),
         style_provider,
         Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
     )
-
-    interface.add_from_file(CURRDIR+"/resources/dialog_window.glade")
-    interface.connect_signals(DialogHandlers(interface, queue))
     
-    # dial = interface.get_object("MessageDialog")
+    dialog_view = DialogView(interface, queue, Gtk)
 
-    # dial.show()
+    login_presenter = LoginPresenter(queue, LoginService())
+    login_view = LoginView(interface, queue, Gtk, login_presenter)
+    login_view.display()
 
-    if not check_user_credentials(): 
-        display_login(interface, OAuth2Session, Firefox, opts, queue, Gtk)
-    else:
-        display_dashboard(interface, OAuth2Session, Firefox, opts, queue, Gtk)
+    # if not check_user_credentials(): 
+    #     display_login(interface, OAuth2Session, Firefox, opts, queue, Gtk)
+    # else:
+    #     display_dashboard(interface, OAuth2Session, Firefox, opts, queue, Gtk)
 
     Gtk.main()

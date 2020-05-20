@@ -17,8 +17,16 @@ class LoginPresenter:
 
 
     def on_initialize_profile(self, **kwargs):
-        print("in presenter: ", kwargs)
-        self.queue.put(dict(action="hide"))
+        username = kwargs.get("username_field")
+        password = kwargs.get("username_password")
+        if len(username) <= 0 and len(password) <=0:
+            self.queue.put(dict(action="update", label="Input fields can not be left empty!", spinner=False))
+            return False
+        if not self.login_service.create_user_file():
+            self.queue.put(dict(action="update", label="Unable to save user information to file!", spinner=False))
+            return False
+            
+        return True
 # def save_access_token(interface, Firefox, browser_opts, email, password, queue, gtk): 
 #     with concurrent.futures.ThreadPoolExecutor() as executor:
 #         params_dict = {
