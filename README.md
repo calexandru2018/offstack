@@ -1,7 +1,7 @@
 <h1 align="center">Offstack App</h1>
 <h3 align="center">Locally store <b>Stackoverflow</b> answers, comments, ratings and personal keywords of your favorite marked questions. <b>Only for Linux.</b></h3>
 
-<div align="center">
+<p align="center">
   <a href="https://github.com/calexandru2018/offstack-app/releases/latest">
       <img alt="Build Status" src="https://img.shields.io/github/release/calexandru2018/offstack-app.svg?style=flat" />
   </a>
@@ -11,30 +11,27 @@
     <a href="https://pepy.tech/project/offstack-app/week">
       <img alt="Downloads per Week" src="https://pepy.tech/badge/offstack-app/week">
     </a>
-</div>
-<div align="center">
+</p>
+<p align="center">
   <a href="https://liberapay.com/calexandru2018/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
-</div>
-<div align="center">
+</p>
+<p align="center">
   <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/offstack-app?color=Yellow&label=python&logo=Python&logoColor=Yellow">
-</div>
-<div align="center">
+</p>
+<p align="center">
   <a href="https://www.codefactor.io/repository/github/calexandru2018/offstack-app">
     <img src="https://www.codefactor.io/repository/github/calexandru2018/offstack-app/badge" alt="CodeFactor" />
   </a>
   <a href="https://github.com/calexandru2018/offstack-app/blob/master/LICENSE">
     <img src="https://img.shields.io/pypi/l/offstack-app?style=flat" alt="License"></img>
   </a>
-</div>
-<div align="center">
+</p>
+<p align="center">
     <a href="https://actions-badge.atrox.dev/calexandru2018/offstack-app/goto?ref=master">
-        <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/calexandru2018/offstack-app/master flake8/master?label=master%20flake8">
+        <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/calexandru2018/offstack-app/master flake8/master?label=master">
     </a>
-    <a href="https://actions-badge.atrox.dev/calexandru2018/offstack-app/goto?ref=testing">
-      <img alt="GitHub Workflow Status (Testing)" src="https://img.shields.io/github/workflow/status/calexandru2018/offstack-app/testing flake8/testing?label=testing%20flake8">
-    </a> 
-</div>
-<br/>
+
+</p>
 <p>
 The main goal with <b>Offstack</b> is to make sure that developpers have access to their favorite stackoverflow questions&answers locally on their computers, without the need of using a browser and searching for previously saved issues.
 </p>
@@ -79,7 +76,7 @@ You can either install via <b>PIP</b> or by cloning the repository.
 
 1. Clone this repository
 
-    `git clone https://github.com/calexandru2018/offstack`
+    `git clone https://github.com/calexandru2018/offstack-app`
 
 2. Step into the directory
 
