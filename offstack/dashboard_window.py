@@ -1,4 +1,4 @@
-
+import html2text
 from .managers import oAuthManager, DriverManager
 from offstack.logger import logger
 from .utils import (
@@ -98,12 +98,15 @@ def column_filter(model, iterator, data=None):
 
 def load_content(question_id, question_textview, answers_textview):
     question, resp_count, answers = display_favorite_question(question_id)
+    
 
+    question_string = html2text.html2text(question)
     question_buffer = question_textview.get_buffer()
-    question_buffer.set_text(question)
+    question_buffer.set_text(question_string)
 
+    answer_string = html2text.html2text(answers)
     answers_buffer = answers_textview.get_buffer()
-    answers_buffer.set_text(answers)
+    answers_buffer.set_text(answer_string)
 
 def cache_favorites(interface, OAuth2Session, Firefox, browser_opts, queue):
     logger.debug("Creating oAuth Session")
@@ -132,7 +135,7 @@ def populate_on_load(interface, OAuth2Session, Firefox, browser_opts, queue):
     
     if not questions_list:
         questions_list = cache_favorites(interface, OAuth2Session, Firefox, browser_opts, queue)
-    print("Should be displayed")
+
     questions_list_store.clear()
     for question in questions_list:
         tags = '; '.join(question["tags"])
