@@ -177,7 +177,7 @@ def display_favorite_question(favorite_id):
                     question = """
                     {body}
                     <br><br>
-                    """.format(title=el["title"], body=el["body_markdown"])
+                    """.format(title=el["title"], body=el["body"])
                     resp_count = 1
                     try:
                         for answer in el["answers"]:
@@ -194,7 +194,7 @@ def display_favorite_question(favorite_id):
                                 accepted=answer["is_accepted"], 
                                 link=answer["share_link"], 
                                 number=str(resp_count), 
-                                response=answer["body_markdown"])
+                                response=answer["body"])
                             resp_count += 1
                         logger.debug("Return favorite related quesion, answers and other data. Favorite Id: {}".format(favorite_id))
                     except KeyError:
