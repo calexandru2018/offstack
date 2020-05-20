@@ -18,3 +18,4 @@ CLIENT_SECRET = 'vrkGpneBMkEkA7E*mVCynw(('
 REDIRECT_URI = 'https://stackexchange.com/oauth/login_success'
 SCOPE = ['no_expiry'] 
 BASE_API = "https://api.stackexchange.com/2.2/"
+SUB_MAIN_LABEL_TEXT = "Locally store Stackoverflow answers, comments,\nratings of your favorite marked questions."
