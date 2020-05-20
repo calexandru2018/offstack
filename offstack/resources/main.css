@@ -2,6 +2,28 @@
 @define-color overlay_color rgb(47, 77, 79);
 @define-color button_hover rgb(27, 37, 39);
 
+.login_window_grid_margin{
+    margin: 0px 60px 0 60px;
+}
+.login_popover_margin{
+    margin: 0px 15px 0 15px;
+}
+
+.dashboard_window_grid_margin{
+    margin: 10px;
+}
+.dashboard_window_main_label_grid_margin{
+    margin: 20px 50px 30px 50px;
+}
+.dashboard_window_main_label_grid_margin .dashboard_version_label{
+    margin-left: 5px;
+    margin-bottom: 9px;
+}
+
+.message_dialog_box_margin{
+    margin: 40px 30px 40px 30px;
+}
+
 window {
     background-color: @def_bg_color;
     color: white;
