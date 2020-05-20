@@ -2,6 +2,7 @@ import os
 from threading import Thread
 
 from offstack.constants import CURRDIR
+from offstack.logger import logger
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -22,10 +23,11 @@ class DialogView:
         self.message_dialog_spinner = interface.get_object("message_dialog_spinner")
 
         self.close_dialog_button = interface.get_object("close_dialog_button")
-
+        
         self.interface = interface
         self.queue = queue
         self.interface = interface
+        self.gtk = Gtk
 
         thread = Thread(target=self.listener)
         thread.daemon = True
@@ -55,11 +57,9 @@ class DialogView:
                     gobject.idle_add(self.hide_spinner)
                     self.queue.task_done()
             except TypeError:
-                print("here")
-                pass
-                # gui_logger.debug(">>> Error occurs due to testing.") 
-            print("hello")
-    def display_dialog(self, kwargs):
+                logger.debug(">>> Error occurs due to testing.") 
+
+    def display(self, kwargs):
         self.close_dialog_button.show()
         self.message_dialog_spinner.hide()
         self.dialog_header.hide()
@@ -80,7 +80,7 @@ class DialogView:
         
         self.messagedialog_window.show()
 
-    def update_dialog(self, kwargs):
+    def update(self, kwargs):
         self.close_dialog_button.show()
         self.message_dialog_spinner.hide()
         self.dialog_header.hide()
@@ -102,7 +102,7 @@ class DialogView:
     def hide_spinner(self):
         self.message_dialog_spinner.hide()
 
-    def hide_dialog(self):
+    def hide(self):
         self.messagedialog_window.hide()
 
     def close_dialog_button_clicked(self, button):
