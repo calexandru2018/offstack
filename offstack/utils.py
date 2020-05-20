@@ -105,7 +105,6 @@ def request_favorites(oauth_manager):
             print("[!] Unable to request for favorites.")
             logger.debug("[!] Unable to send request favorites.")
             return False
-            # prompt_user_credentials(bypass_check=True)
 
         access_token = request_access_token()
         with open(USERDATA, 'a') as f:
@@ -135,32 +134,12 @@ def get_questions():
         with open(FAVORITES, 'r') as f:
             for el in json.load(f)['items']:
                 for x in el:
-                    # print("""
-                    # Title:      {title}
-                    # Text:       {text}
-                    # Answered:   {is_answered}
-                    # Views:      {views}
-                    # Answers:    {answers}
-                    # Score:      {score}
-                    # Link:       {link}
-                    # """.format(
-                    #     title=el['title'], 
-                    #     text=el['body_markdown'], 
-                    #     is_answered=el['is_answered'], 
-                    #     views=el['view_count'],
-                    #     answers=el['answer_count'],
-                    #     score=el['score'],
-                    #     link=el['link'],))
                     response_dict = {
                         "question_id": el['question_id'],
                         "tags": el['tags'],
                         "title": el['title'],
-                        # "text": el['body_markdown'],
                         "answered": el['is_answered'],
-                        # "views": el['view_count'],
-                        # "answers": el['answer_count'],
                         "score": el['score'],
-                        # "link": el['link'],
                     }
                 response_list.append(response_dict)
         logger.debug("Questions were collected.")
