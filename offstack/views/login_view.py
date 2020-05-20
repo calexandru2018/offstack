@@ -55,26 +55,14 @@ class LoginView:
         
         with futures.ThreadPoolExecutor(max_workers=1) as executor:
             var_dict = dict(
-                        username_field=self.email_field.get_text().strip(), 
-                        password_field=self.password_field.get_text().strip(),
+                        username=self.email_field.get_text().strip(), 
+                        password=self.password_field.get_text().strip(),
             )
             future = executor.submit(self.login_presenter.on_initialize_profile, **var_dict)
             return_value = future.result()
-            print("futures result: ", return_value)
-        
-        # if return_value:
-        #     self.login_view.hide()
-        #     self.dashboard_view.display_window()
 
-        # thread = Thread(target=save_access_token, args=[ email, password])
-        #     thread.daemon = True
-        #     thread.start()
-        # if not len(email) == 0 and not len(password) == 0:          
-        #     thread = Thread(target=save_access_token, args=[self.interface, self.Firefox, self.browser_opts, self.OAuth2Session, email, password, self.queue, self.gtk])
-        #     thread.daemon = True
-        #     thread.start()
-        # else:
-        #     print("some of the fields were left empty")
+            if return_value:
+                print("load dashboard")
 
     def need_help_login_label_clicked(self, label, link):
         self.popover.show()
