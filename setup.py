@@ -24,6 +24,7 @@ setup(
     description="Offline store favorite marked questions and answers from Stackoverflow.",
     long_description=long_descr,
     author="calexandru2018",
+    author_email="acrandom@pm.me",
     license="GPLv3",
     url="https://github.com/calexandru2018/offstack-app",
     install_requires=[
