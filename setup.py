@@ -17,7 +17,7 @@ setup(
     name="offstack-app",
     packages=["offstack"],
     entry_points={
-        "console_scripts": ["offstack = offstack.__main__:init"]     
+        "console_scripts": ["offstack = offstack.offstack:init"]     
     },
     include_package_data=True,
     version=VERSION,
