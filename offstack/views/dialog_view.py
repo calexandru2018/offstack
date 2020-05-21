@@ -38,18 +38,18 @@ class DialogView:
             kwargs = self.queue.get()
 
             try:
-                if "display_dialog" in kwargs.get("action"):
+                if "display" in kwargs.get("action"):
                     # self.display_dialog(**kwargs)
-                    gobject.idle_add(self.display_dialog, kwargs)
+                    gobject.idle_add(self.display, kwargs)
                     self.queue.task_done()
-                if "update_dialog" in kwargs.get("action"):
+                if "update" in kwargs.get("action"):
                     # self.update_dialog(**kwargs)
-                    gobject.idle_add(self.update_dialog, kwargs)
+                    gobject.idle_add(self.update, kwargs)
                     self.queue.task_done()
 
-                if "hide_dialog" in kwargs.get("action"):
+                if "hide" in kwargs.get("action"):
                     # self.hide_dialog()
-                    gobject.idle_add(self.hide_dialog)
+                    gobject.idle_add(self.hide)
                     self.queue.task_done()
                     
                 if "hide_spinner" in kwargs.get("action"):
