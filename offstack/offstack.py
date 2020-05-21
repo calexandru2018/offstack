@@ -18,9 +18,11 @@ from offstack.constants import CONFIG_DIR, USERDATA, CURRDIR
 from offstack.utils import check_user_credentials
 
 from offstack.views.login_view import LoginView
+from offstack.views.dashboard_view import DashboardView
 from offstack.views.dialog_view import DialogView
 
 from offstack.presenters.login_presenter import LoginPresenter
+from offstack.presenters.dashboard_presenter import DashboardPresenter
 
 from offstack.services.login_service import LoginService
 
@@ -40,13 +42,14 @@ def init():
     
     dialog_view = DialogView(interface, queue, Gtk)
 
-    login_presenter = LoginPresenter(queue, LoginService())
-    login_view = LoginView(interface, queue, Gtk, login_presenter)
-    login_view.display()
+    dashboard_presenter = DashboardPresenter(queue)
+    dashboard_view = DashboardView(interface, queue, Gtk, dashboard_presenter)
 
-    # if not check_user_credentials(): 
-    #     display_login(interface, OAuth2Session, Firefox, opts, queue, Gtk)
-    # else:
-    #     display_dashboard(interface, OAuth2Session, Firefox, opts, queue, Gtk)
+    if not check_user_credentials(): 
+        login_presenter = LoginPresenter(queue, LoginService())
+        login_view = LoginView(interface, queue, Gtk, login_presenter, dashboard_view)
+        login_view.display()
+    else:
+        dashboard_view.display()
 
     Gtk.main()
