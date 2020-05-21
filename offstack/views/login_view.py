@@ -20,22 +20,23 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import  GObject as obj
 
 class LoginView:
-    def __init__(self, interface, queue, Gtk, login_presenter):
+    def __init__(self, interface, queue, Gtk, login_presenter, dashboard_view):
         interface.add_from_file(os.path.join(CURRDIR, "resources/login_window.glade"))
         interface.connect_signals({
             "login_button_clicked": self.login_button_clicked,
             "need_help_login_label_clicked": self.need_help_login_label_clicked,
         })
-        self.set_objects(interface, queue, Gtk, login_presenter)
+        self.set_objects(interface, queue, Gtk, login_presenter, dashboard_view)
 
     def display(self):
         self.login_view.show()
 
-    def set_objects(self, interface, queue, Gtk,login_presenter):
+    def set_objects(self, interface, queue, Gtk,login_presenter, dashboard_view):
         self.interface = interface
         self.queue = queue
         self.gtk = Gtk
         self.login_presenter = login_presenter
+        self.dashboard_view = dashboard_view
 
         self.login_view = interface.get_object("LoginWindow")
         self.login_view.connect("destroy", Gtk.main_quit)
@@ -60,7 +61,8 @@ class LoginView:
             return_value = future.result()
 
             if return_value:
-                print("load dashboard")
+                self.login_view.hide()
+                self.dashboard_view.display()
 
     def need_help_login_label_clicked(self, label, link):
         self.popover.show()
