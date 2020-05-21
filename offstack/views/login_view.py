@@ -3,8 +3,6 @@ import time
 from concurrent import futures
 
 # from offstack.dashboard_window import display_dashboard
-from offstack.managers import oAuthManager, DriverManager
-from offstack.utils import request_access_token, check_user_credentials
 from offstack.logger import logger
 from offstack.constants import (
     CLIENT_ID,
